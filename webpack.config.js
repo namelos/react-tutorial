@@ -18,8 +18,16 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [
-      { test: /\.jsx?/, loaders: ['babel'], include: path.join(__dirname, 'src') }
-    ]
+    loaders: [{
+      test: /\.jsx?/,
+      loader: 'babel',
+      include: path.join(__dirname, 'src')
+    }, {
+      test: /\.css$/,
+      loaders: [
+        'style',
+        'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+      ]
+    }]
   }
 }
