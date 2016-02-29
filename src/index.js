@@ -7,4 +7,5 @@ import routes from './routes'
 const root = document.getElementById('root')
 const store = configureStore(reducer)
 const app = routes(store)
+
 render(app, root)
