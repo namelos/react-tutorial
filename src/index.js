@@ -1,23 +1,16 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import styles from './index.css'
-const { red, green, blue } = styles
 
-const Greetings = ({ children, className }) => <h1 className={ className }>
-  Hello, { children }!
-</h1>
+class Greetings extends Component {
+  state = { name: 'world' };
 
-const App = ({ children }) => <div>
-  <h1>Name list:</h1>
-  { children }
-</div>
+  handleChange = e =>
+    this.setState({ name: e.target.value })
 
-render(
-  <App>
-    <ul>
-      <li><Greetings className={ red }>Fred</Greetings></li>
-      <li><Greetings className={ green }>Tom</Greetings></li>
-      <li><Greetings className={ blue }>Jerry</Greetings></li>
-    </ul>
-  </App>,
-  document.getElementById('root'))
+  render = () => <div>
+    <input type="text" onChange={ this.handleChange } />
+    <h1>hello, { this.state.name }</h1>
+  </div>
+}
+
+render(<Greetings />, document.getElementById('root'))
