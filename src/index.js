@@ -13,20 +13,13 @@ const initialState = {
 
 const counter = (state = initialState, action) => {
   switch (action.type) {
-    case 'CHANGE_NAME':
+    case 'GET_EMAIL':
       return { ...state, name: action.name }
-    case 'CHANGE_EMAIL':
-      return { ...state, email: action.email }
-    case 'CHANGE_ADDRESS':
-      return { ...state, address: action.address }
     default:
       return state
   }
 }
 
-const changeName = name => ({ type: 'CHANGE_NAME', name })
-const changeEmail = email => ({ type: 'CHANGE_EMAIL', email })
-const changeAddress = address => ({ type: 'CHANGE_ADDRESS', address })
 
 /* --- */
 
@@ -36,9 +29,9 @@ const store = compose(applyMiddleware(thunk), Devtools.instrument())(createStore
 
 const mapState = ({ name, email, address }) => ({ name, email, address })
 
-const mapAction = dispatch => bindActionCreators({ changeName, changeEmail, changeAddress }, dispatch)
+const mapAction = dispatch => bindActionCreators({}, dispatch)
 
-const Form = ({ name, email, address, changeName, changeEmail, changeAddress }) => <div>
+const Form = ({ name, email, address }) => <div>
   <ul>
     <li><h1>name: { name }</h1></li>
     <li><h1>email: { email }</h1></li>
@@ -46,10 +39,7 @@ const Form = ({ name, email, address, changeName, changeEmail, changeAddress }) 
   </ul>
   <label>name:</label>
   <input onChange={ e => changeName(e.target.value) } type="input"/>
-  <label>email:</label>
-  <input onChange={ e => changeEmail(e.target.value) } type="input"/>
-  <label>address:</label>
-  <input onChange={ e => changeAddress(e.target.value) } type="input"/>
+  <button >SEND REQUEST</button>
 </div>
 
 const ConnectedForm = connect(mapState, mapAction)(Form)
