@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore, bindActionCreators } from 'redux'
+import { createStore, bindActionCreators, applyMiddleware, compose } from 'redux'
 import { connect, Provider } from 'react-redux'
+import { Devtools } from './containers'
 
 const initialState = {
   name: '',
@@ -26,7 +27,11 @@ const changeName = name => ({ type: 'CHANGE_NAME', name })
 const changeEmail = email => ({ type: 'CHANGE_EMAIL', email })
 const changeAddress = address => ({ type: 'CHANGE_ADDRESS', address })
 
-const store = createStore(counter)
+/* --- */
+
+const store = compose(Devtools.instrument())(createStore)(counter)
+
+/* --- */
 
 const mapState = ({ name, email, address }) => ({ name, email, address })
 
@@ -50,7 +55,10 @@ const ConnectedForm = connect(mapState, mapAction)(Form)
 
 render(
   <Provider store={ store }>
-    <ConnectedForm />
+    <div>
+      <ConnectedForm />
+      <Devtools />
+    </div>
   </Provider>,
   document.getElementById('root')
 )
