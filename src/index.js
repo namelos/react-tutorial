@@ -1,4 +1,5 @@
-import React from 'react'
-import { render } from 'react-dom'
+import styles from './index.css'
 
-render(<h1>hello test</h1>, document.getElementById('root'))
+const $root = document.getElementById('root')
+
+$root.innerHTML = `<h1 class="${ styles.green }">Hello webpack</h1>`
