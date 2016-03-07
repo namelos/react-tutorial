@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { createStore } from 'redux'
+import { connect, Provider } from 'react-redux'
 
 const initialState = {
   name: '',
@@ -21,28 +22,12 @@ const counter = (state = initialState, action) => {
   }
 }
 
-const store = createStore(counter)
+const changeName = name => ({ type: 'CHANGE_NAME', name })
+const changeEmail = email => ({ type: 'CHANGE_EMAIL', email })
+const changeAddress = address => ({ type: 'CHANGE_ADDRESS', address })
 
-store.subscribe(() => {
-  const state = store.getState()
+const mapState = state => {
   const { name, email, address } = state
-  console.log(state)
+  return { name, email, address }
+}
 
-  render(
-    <div>
-      <ul>
-        <li><h1>name: { name }</h1></li>
-        <li><h1>email: { email }</h1></li>
-        <li><h1>address: { address }</h1></li>
-      </ul>
-      <label>name:</label>
-      <input onChange={ e => store.dispatch({ type: 'CHANGE_NAME', name: e.target.value }) } type="input"/>
-      <label>email:</label>
-      <input onChange={ e => store.dispatch({ type: 'CHANGE_EMAIL', email: e.target.value }) } type="input"/>
-      <label>address:</label>
-      <input onChange={ e => store.dispatch({ type: 'CHANGE_ADDRESS', address: e.target.value }) } type="input"/>
-    </div>,
-    document.getElementById('root'))
-})
-
-store.dispatch({ type: 'Nothing' })
