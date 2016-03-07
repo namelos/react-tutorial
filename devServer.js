@@ -22,11 +22,12 @@ app.use(require('webpack-dev-middleware')(webpack(config), {
 }))
 
 app.get('/api', (req, res) => {
-  return res.json({
-    name: req.query.name || 'wrong name!',
-    email: `${randomString()}@${randomString()}.com`,
-    address: randomString() + randomString()
-  })
+  setTimeout(() =>
+    res.json({
+      name: req.query.name || 'wrong name!',
+      email: `${randomString()}@${randomString()}.com`,
+      address: randomString() + randomString()
+    }), 1000)
 })
 
 
