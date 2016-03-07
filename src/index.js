@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 
-render(<h1>Hello world!</h1>, document.getElementById('root'))
+const Greetings = ({ name }) => <h1>
+  Hello, { name }!
+</h1>
+
+render(<Greetings name="fred" />, document.getElementById('root'))
