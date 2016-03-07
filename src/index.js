@@ -33,5 +33,24 @@ const mapState = ({ name, email, address }) => ({ name, email, address })
 const mapAction = dispatch => bindActionCreators({ changeName, changeEmail, changeAddress }, dispatch)
 
 const Form = ({ name, email, address, changeName, changeEmail, changeAddress }) => <div>
-  
+  <ul>
+    <li><h1>name: { name }</h1></li>
+    <li><h1>email: { email }</h1></li>
+    <li><h1>address: { address }</h1></li>
+  </ul>
+  <label>name:</label>
+  <input onChange={ e => changeName(e.target.value) } type="input"/>
+  <label>email:</label>
+  <input onChange={ e => changeEmail(e.target.value) } type="input"/>
+  <label>address:</label>
+  <input onChange={ e => changeAddress(e.target.value) } type="input"/>
 </div>
+
+const ConnectedForm = connect(mapState, mapAction)(Form)
+
+render(
+  <Provider store={ store }>
+    <ConnectedForm />
+  </Provider>,
+  document.getElementById('root')
+)
