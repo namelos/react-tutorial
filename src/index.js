@@ -1,73 +1,35 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore, bindActionCreators, applyMiddleware, compose } from 'redux'
-import { connect, Provider } from 'react-redux'
-import thunk from 'redux-thunk'
-import { Devtools } from './containers'
-import { get } from 'axios'
+import { IndexRoute, Router, Route, Link, browserHistory } from 'react-router'
 
-const initialState = {
-  name: '',
-  email: '',
-  address: '',
-  json: {}
-}
+const Home = () => <div>
+  <h1>This is Home Page</h1>
+</div>
 
-const counter = (state = initialState, action) => {
-  switch (action.type) {
-    case 'REQUEST':
-      return { ...state, isFetching: true }
-    case 'RECEIVE':
-      const data = action.data
-      const { name, email, address } = data
-      return { ...state, name, email, address, isFetching: false }
-    case 'CHANGE_NAME':
-      return { ...state, name: action.name }
-    default:
-      return state
-  }
-}
+const About = () => <div>
+  <h1>This is About Page</h1>
+</div>
 
-const changeName = name => ({ type: 'CHANGE_NAME', name })
+const Help = () => <div>
+  <h1>This is Help Page</h1>
+</div>
 
-const fetch = name => dispatch => {
-  dispatch({ type: 'REQUEST' })
-  get(`/api?name=${ name }`)
-    .then(res => res.data)
-    .then(data => dispatch({ type: 'RECEIVE', data }))
-}
-
-/* --- */
-
-const store = compose(applyMiddleware(thunk), Devtools.instrument())(createStore)(counter)
-
-/* --- */
-
-const mapState = ({ name, email, address, isFetching }) => ({ name, email, address, isFetching })
-
-const mapAction = dispatch => bindActionCreators({ changeName, fetch }, dispatch)
-
-const Form = ({ name, email, address, changeName, fetch, isFetching }) =>
-  <div>
-    { isFetching ?
-      <h1>Loading...</h1> : <ul>
-      <li><h1>name: { name }</h1></li>
-      <li><h1>email: { email }</h1></li>
-      <li><h1>address: { address }</h1></li>
-    </ul> }
-    <label>name:</label>
-    <input onChange={ e => changeName(e.target.value) } type="input"/>
-    <button onClick={ e => fetch(name) }>SEND REQUEST</button>
-  </div>
-
-const ConnectedForm = connect(mapState, mapAction)(Form)
+const App = ({ children }) => <div>
+  <h1>My Whole App</h1>
+  <ul>
+    <li><Link to='/' >Home</Link></li>
+    <li><Link to='/about'>About</Link></li>
+    <li><Link to='/help'>Help</Link></li>
+  </ul>
+  { children }
+</div>
 
 render(
-  <Provider store={ store }>
-    <div>
-      <ConnectedForm />
-      <Devtools />
-    </div>
-  </Provider>,
-  document.getElementById('root')
-)
+  <Router history={ browserHistory }>
+    <Route path="/" component={ App }>
+      <IndexRoute component={ Home } />
+      <Route path="/about" component={ About } />
+      <Route path="/help" component={ Help } />
+    </Route>
+  </Router>,
+  document.getElementById('root'))
