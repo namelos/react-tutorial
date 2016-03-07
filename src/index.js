@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { createStore, bindActionCreators, applyMiddleware, compose } from 'redux'
 import { connect, Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 import { Devtools } from './containers'
 
 const initialState = {
@@ -29,7 +30,7 @@ const changeAddress = address => ({ type: 'CHANGE_ADDRESS', address })
 
 /* --- */
 
-const store = compose(Devtools.instrument())(createStore)(counter)
+const store = compose(applyMiddleware(thunk), Devtools.instrument())(createStore)(counter)
 
 /* --- */
 
