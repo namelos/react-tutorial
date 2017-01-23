@@ -1,5 +1,5 @@
 import React from 'react'
 
 export const Counter = ({ num }) => <div>
-  Counter: {num}
+  <span>Counter: {num}</span>
 </div>
