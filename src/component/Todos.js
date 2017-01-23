@@ -17,7 +17,7 @@ export const Todos = ({ addTodo, ...props }) => {
   </div>
 }
 
-export const TodoList = ({ todos, ...props }) => <ul>
+const TodoList = ({ todos, ...props }) => <ul>
   { todos.map((todo, i) => <Todo todo={todo} key={i} {...props} />) }
 </ul>
 
