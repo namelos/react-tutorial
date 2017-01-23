@@ -7,6 +7,7 @@ import { Router, IndexRoute, Route, browserHistory } from 'react-router'
 import { counter } from './module/counter'
 
 import { App } from './component/App'
+import { Todos } from './component/Todos'
 import { CounterApp } from './container/CounterApp'
 
 const store = createStore(counter)
@@ -16,7 +17,8 @@ render(
     <div>
       <Router history={browserHistory}>
         <Route path="/" component={App}>
-          <IndexRoute component={CounterApp}/>
+          <IndexRoute component={CounterApp} />
+          <Route path="todos" component={Todos} />
         </Route>
       </Router>
     </div>
