@@ -1,16 +1,27 @@
 import React from 'react'
 
-const todos = [
-  { text: "first" },
-  { text: "second" },
-  { text: "third" },
-]
+export const Todos = ({ todos, addTodo, removeTodo }) => {
+  let input
 
-export const Todos = ({}) => <ul>
-  { todos.map(todo => <Todo todo={todo} />) }
+  const submit = e => {
+    e.preventDefault()
+    addTodo(input.value)
+    input.value = ''
+  }
+
+  return <div>
+    <TodoList todos={todos}/>
+    <form onSubmit={submit}>
+      <input ref={i => input = i}/>
+    </form>
+  </div>
+}
+
+export const TodoList = ({ todos }) => <ul>
+  { todos.map((todo, i) => <Todo todo={todo} key={i} />) }
 </ul>
 
 const Todo = ({ todo }) => <li>
-  {todo.text}
+  {todo.id} {todo.text}
 </li>
 

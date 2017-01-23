@@ -8,7 +8,7 @@ const initialState = []
 export const addTodo = text => ({ type: ADD_TODO, text })
 export const removeTodo = id => ({ type: REMOVE_TODO, id })
 
-export const todos = (state = [], action) => {
+export const todos = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
       const newTodo = { text: action.text, id: counter++ }
