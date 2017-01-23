@@ -1,0 +1,11 @@
+{
+  "name": "react-tutorial",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/namelos/react-tutorial",
+    "type": "git"
+  },
+  "author": "Yifan Wang <namelos@outlook.com>",
+  "license": "MIT"
+}
