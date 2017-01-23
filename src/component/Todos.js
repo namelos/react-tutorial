@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Todos = ({ todos, addTodo, removeTodo }) => {
+export const Todos = ({ addTodo, ...props }) => {
   let input
 
   const submit = e => {
@@ -10,18 +10,19 @@ export const Todos = ({ todos, addTodo, removeTodo }) => {
   }
 
   return <div>
-    <TodoList todos={todos}/>
+    <TodoList {...props}/>
     <form onSubmit={submit}>
       <input ref={i => input = i}/>
     </form>
   </div>
 }
 
-export const TodoList = ({ todos }) => <ul>
-  { todos.map((todo, i) => <Todo todo={todo} key={i} />) }
+export const TodoList = ({ todos, ...props }) => <ul>
+  { todos.map((todo, i) => <Todo todo={todo} key={i} {...props} />) }
 </ul>
 
-const Todo = ({ todo }) => <li>
-  {todo.id} {todo.text}
+const Todo = ({ todo, removeTodo }) => <li>
+  <span>{todo.id} {todo.text}</span>
+  <button onClick={e => removeTodo(todo.id)}>-</button>
 </li>
 
