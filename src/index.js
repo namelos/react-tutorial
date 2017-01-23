@@ -1,5 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Counter } from './component/Counter'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import { CounterApp } from './container/CounterApp'
+import { counter } from './module/counter'
 
-render(<Counter num={1} />, document.querySelector('#app'))
+const store = createStore(counter)
+
+render(
+  <Provider store={store}>
+    <CounterApp />
+  </Provider>, document.querySelector('#app'))
