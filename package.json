@@ -7,5 +7,8 @@
     "type": "git"
   },
   "author": "Yifan Wang <namelos@outlook.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^1.14.0"
+  }
 }
