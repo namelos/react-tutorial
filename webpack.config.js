@@ -11,5 +11,8 @@ module.exports = {
       exclude: 'src',
       loader: 'babel'
     }]
+  },
+  devServer: {
+    historyApiFallback: true
   }
 }
