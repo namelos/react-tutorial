@@ -2,6 +2,9 @@
   "name": "react-tutorial",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "node node_modules/.bin/webpack-dev-server"
+  },
   "repository": {
     "url": "https://github.com/namelos/react-tutorial",
     "type": "git"
