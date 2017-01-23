@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node node_modules/.bin/webpack-dev-server"
+    "start": "node node_modules/.bin/webpack-dev-server",
+    "test": "node node_modules/.bin/ava",
+    "watch": "node node_modules/.bin/ava --watch"
   },
   "repository": {
     "url": "https://github.com/namelos/react-tutorial",
@@ -12,6 +14,7 @@
   "author": "Yifan Wang <namelos@outlook.com>",
   "license": "MIT",
   "devDependencies": {
+    "ava": "^0.17.0",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
   }
