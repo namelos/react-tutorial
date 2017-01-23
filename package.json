@@ -9,6 +9,7 @@
   "author": "Yifan Wang <namelos@outlook.com>",
   "license": "MIT",
   "devDependencies": {
-    "webpack": "^1.14.0"
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   }
 }
