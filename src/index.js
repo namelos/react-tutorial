@@ -12,7 +12,8 @@ import { TodoApp } from './container/TodoApp'
 import { CounterApp } from './container/CounterApp'
 
 const store = createStore(
-  combineReducers({ counter, todos })
+  combineReducers({ counter, todos }),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
 render(
